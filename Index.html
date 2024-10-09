@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone E-commerce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h4>Search</h4>
+            <input type="search" id="txtSearch">
+            
+            <h4>Brand</h4>
+            <ul id="brandlist"></ul>
+            <h4>Ram</h4>
+            <ul id="ramlist"></ul>
+            <h4>Internal</h4>
+            <ul id="internallist"></ul>
+        </div>
+    </div>
+  
+<script>
+    const brandlist = document.getElementById("brandlist");
+const ramlist = document.getElementById("ramlist");
+const internallist = document.getElementById("internallist");
+
+let fetchedProduct = [];
+
+async function fetchProduct() {
+    let products = [];
+    try{
+        const url="product.json";
+        const response = await fetch(url);
+        products = await response.json();
+        return products;
+    }   catch(error){
+        console.error(error);
+    }
+
+    return products;
+}
+
+window.addEventListener("load",async function(){
+    fetchedProduct = await fetchProduct();
+    console.log(fetchedProduct);
+});
+
+
+</script>
+</body>
+</html>
